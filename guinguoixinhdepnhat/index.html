@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>guinguoixinhdepnhat</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(#f8cfd7, #ffdce5);
+  overflow: hidden;
+}
+
+.page {
+  display: none;
+  height: 100vh;
+  text-align: center;
+  padding-top: 15vh;
+}
+
+.active { display: block; }
+
+button {
+  padding: 14px 32px;
+  border-radius: 30px;
+  border: none;
+  background: #ff5f8a;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,.25);
+}
+
+h1 {
+  font-family: 'Pacifico';
+  font-size: 44px;
+}
+
+input {
+  padding: 12px;
+  width: 260px;
+  border-radius: 20px;
+  border: none;
+  margin: 10px;
+  text-align: center;
+}
+
+/* snow */
+.snow {
+  position: fixed;
+  top: -10px;
+  color: white;
+  font-size: 16px;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  to { transform: translateY(110vh); }
+}
+
+/* hearts */
+.heart {
+  position: fixed;
+  bottom: 0;
+  font-size: 20px;
+  animation: floatUp 4s linear infinite;
+}
+@keyframes floatUp {
+  to { transform: translateY(-110vh); opacity: 0; }
+}
+
+/* album */
+.album {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.photo {
+  width: 140px;
+  height: 190px;
+  perspective: 1000px;
+}
+
+.photo-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform .8s;
+  transform-style: preserve-3d;
+}
+
+.photo:hover .photo-inner {
+  transform: rotateY(180deg);
+}
+
+.photo-front, .photo-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+  backface-visibility: hidden;
+  box-shadow: 0 12px 30px rgba(0,0,0,.35);
+}
+
+.photo-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+.photo-back {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Pacifico';
+  color: #ff5f8a;
+  font-size: 20px;
+  transform: rotateY(180deg);
+}
+
+/* card */
+.card {
+  background: white;
+  width: 85%;
+  max-width: 360px;
+  margin: auto;
+  padding: 28px;
+  border-radius: 26px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.3);
+  animation: shake 2s infinite;
+}
+
+@keyframes shake {
+  0%,100% { transform: rotate(0deg); }
+  50% { transform: rotate(1deg); }
+}
+
+.card h2 {
+  font-family: 'Pacifico';
+  color: #ff5f8a;
+}
+</style>
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<!-- Using a hosted sample track so the page can play music without extra local assets -->
+<audio id="music" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" loop></audio>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+  <button onclick="start()">Bé nhấn vào đi :3</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+  <h1>Có phải bé không?</h1>
+  <input id="user" placeholder="Tên đăng nhập"><br>
+  <input id="pass" type="password" placeholder="Mật khẩu"><br><br>
+  <button onclick="login()">Vào nè ❤️</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="p3">
+  <h1>Uyên ơi!</h1>
+  <p>16/03/2005<br><br>Noel rồi đó 🎄<br>Dễ thương như bé 🥰</p>
+  <button onclick="go(4)">Tiếp nè 💕</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="p4">
+  <h1>Merry Christmas 🎄</h1>
+  <img src="https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif" width="260"><br><br>
+  <button onclick="go(5)">Anh nói tiếp nè 💌</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="p5">
+  <h1>Gửi gì cho anh không? 💭</h1>
+  <input placeholder="Gõ gì cũng được 😝"><br><br>
+  <button onclick="go(6)">Gửi 💕</button>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page" id="p6">
+  <h1>🤭</h1>
+  <p style="font-size:22px">Anh thương bé nhiều lắm 💖</p>
+  <button onclick="go(7)">Xem tiếp 👀</button>
+</div>
+
+<!-- PAGE 7 -->
+<div class="page" id="p7">
+  <h1>Love is in the air 💖</h1>
+  <button onclick="go(8)">Xem album 📸</button>
+</div>
+
+<!-- PAGE 8 -->
+<div class="page" id="p8">
+  <h1>Em iu xinh album 💕</h1>
+  <div class="album">
+
+    <!-- PHOTO (using picsum placeholders so the site works immediately) -->
+    <div class="photo">
+      <div class="photo-inner">
+        <div class="photo-front"><img src="https://picsum.photos/seed/1/300/400"></div>
+        <div class="photo-back">Anh yêu em</div>
+      </div>
+    </div>
+
+    <div class="photo">
+      <div class="photo-inner">
+        <div class="photo-front"><img src="https://picsum.photos/seed/2/300/400"></div>
+        <div class="photo-back">Cười xinh ghê</div>
+      </div>
+    </div>
+
+    <div class="photo">
+      <div class="photo-inner">
+        <div class="photo-front"><img src="https://picsum.photos/seed/3/300/400"></div>
+        <div class="photo-back">Nhớ em</div>
+      </div>
+    </div>
+
+    <div class="photo">
+      <div class="photo-inner">
+        <div class="photo-front"><img src="https://picsum.photos/seed/4/300/400"></div>
+        <div class="photo-back">Cả thế giới</div>
+      </div>
+    </div>
+
+    <div class="photo">
+      <div class="photo-inner">
+        <div class="photo-front"><img src="https://picsum.photos/seed/5/300/400"></div>
+        <div class="photo-back">Là bé</div>
+      </div>
+    </div>
+
+  </div>
+  <br>
+  <button onclick="go(9)">Mở thiệp 🎄</button>
+</div>
+
+<!-- PAGE 9 -->
+<div class="page" id="p9">
+  <div class="card">
+    <h2>🎄 Merry Christmas 🎄</h2>
+    <p>
+      You are my Christmas miracle ✨<br>
+      Every day with you is a gift ❤️
+    </p>
+    <hr>
+    <p style="font-size:16px">
+      Dù một năm đã qua đã nhiều chuyện xảy ra,<br>
+      nhưng hãy sống thật hạnh phúc có anh nhé 💞
+    </p>
+  </div>
+</div>
+
+<script>
+function start(){
+  document.getElementById("music").play();
+  go(2);
+}
+
+function go(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('p'+n).classList.add('active');
+}
+
+function login(){
+  if(user.value==="uyen" && pass.value==="16032005") go(3);
+  else alert("Sai rồi bé ơi 😶");
+}
+
+/* snow */
+setInterval(()=>{
+  let s=document.createElement("div");
+  s.className="snow";
+  s.innerHTML="❄";
+  s.style.left=Math.random()*innerWidth+"px";
+  s.style.animationDuration=3+Math.random()*5+"s";
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),8000);
+},200);
+
+/* hearts */
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="💖";
+  h.style.left=Math.random()*innerWidth+"px";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),4000);
+},600);
+</script>
+
+</body>
+</html>
