@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Tặng Uyên 🎄</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f8cfd7;
+  overflow: hidden;
+}
+.page {
+  display: none;
+  height: 100vh;
+  text-align: center;
+  padding-top: 18vh;
+}
+.active { display: block; }
+
+button {
+  padding: 14px 30px;
+  border-radius: 30px;
+  border: none;
+  background: #ff5f8a;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,.2);
+}
+
+h1 {
+  font-family: 'Pacifico';
+  font-size: 46px;
+}
+
+input {
+  padding: 12px;
+  width: 260px;
+  border-radius: 20px;
+  border: none;
+  margin: 10px;
+  text-align: center;
+}
+
+img {
+  width: 260px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.3);
+  margin: 10px;
+}
+
+/* snow */
+.snow {
+  position: fixed;
+  top: -10px;
+  color: white;
+  font-size: 16px;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  to { transform: translateY(110vh); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+  <button onclick="go(2)">Bé nhấn vào đi :3</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+  <h1>Có phải bé không?</h1>
+  <p>Bé nhớ nhập đúng thông tin để vào nha 💗</p>
+  <input id="user" placeholder="Tên đăng nhập"><br>
+  <input id="pass" type="password" placeholder="Mật khẩu"><br><br>
+  <button onclick="login()">Bé nhấn vào đây ❤️</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="p3">
+  <h1>Uyên ơi!</h1>
+  <p>
+    16/03/2005<br><br>
+    Hôm nay là Noel phải không bé 🎄<br>
+    Một ngày dễ thương y như bé vậy đó 🥰
+  </p><br>
+  <button onclick="go(4)">Bé nhấn vào đây ❤️</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="p4">
+  <h1>Merry Christmas 🎄</h1>
+  <img src="https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif"><br><br>
+  <button onclick="go(5)">Anh còn muốn nói nè 💌</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="p5">
+  <h1>Em muốn gửi gì cho anh không? 💭</h1>
+  <input placeholder="Gõ gì cũng được nè 😝"><br><br>
+  <button onclick="go(6)">Gửi cho anh 💕</button>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page" id="p6">
+  <h1>🤭</h1>
+  <p style="font-size:22px">
+    Anh dễ thương và cute hihi 😆💖
+  </p><br>
+  <button onclick="go(7)">Xem tiếp nè 👀</button>
+</div>
+
+<!-- PAGE 7 -->
+<div class="page" id="p7">
+  <h1>Love is in the air 💖</h1>
+  <img src="https://media.giphy.com/media/l2QDM9Jnim1YVILXa/giphy.gif">
+  <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif">
+  <img src="https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif"><br>
+  <button onclick="go(8)">Lời chúc Noel 🎄</button>
+</div>
+
+<!-- PAGE 8 -->
+<div class="page" id="p8">
+  <h1>🎄 Merry Christmas 🎄</h1>
+  <p style="font-size:20px; line-height:1.6">
+    You are my Christmas miracle, and every day with you is a gift. ✨<br><br>
+
+    With you, every moment sparkles – Merry Christmas, my love. ❤️<br><br>
+
+    I’m so lucky to be spending another Christmas with you!
+  </p>
+</div>
+
+<script>
+function go(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('p'+n).classList.add('active');
+}
+
+function login(){
+  const u = document.getElementById("user").value;
+  const p = document.getElementById("pass").value;
+  if(u==="uyen" && p==="16032005"){
+    go(3);
+  } else {
+    alert("Sai rồi bé ơi 😶");
+  }
+}
+
+/* snow */
+setInterval(()=>{
+  const s=document.createElement("div");
+  s.className="snow";
+  s.innerHTML="❄";
+  s.style.left=Math.random()*window.innerWidth+"px";
+  s.style.animationDuration=3+Math.random()*5+"s";
+  s.style.opacity=Math.random();
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),8000);
+},200);
+</script>
+
+</body>
+</html>
