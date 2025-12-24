@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Tặng Uyên 🎄</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f8cfd7;
+  overflow: hidden;
+}
+
+.page {
+  display: none;
+  height: 100vh;
+  text-align: center;
+  padding-top: 18vh;
+}
+
+.active { display: block; }
+
+button {
+  padding: 14px 30px;
+  border-radius: 30px;
+  border: none;
+  background: #ff5f8a;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,.2);
+}
+
+h1 {
+  font-family: 'Pacifico';
+  font-size: 46px;
+}
+
+input {
+  padding: 12px;
+  width: 260px;
+  border-radius: 20px;
+  border: none;
+  margin: 10px;
+  text-align: center;
+}
+
+img {
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.3);
+}
+
+/* snow */
+.snow {
+  position: fixed;
+  top: -10px;
+  color: white;
+  font-size: 16px;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  to { transform: translateY(110vh); }
+}
+
+/* album */
+.album {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.album img {
+  width: 140px;
+  height: 180px;
+  object-fit: cover;
+  transition: transform .3s;
+}
+
+.album img:hover {
+  transform: scale(1.08);
+}
+
+/* card */
+.card {
+  background: #fff;
+  margin: 0 auto;
+  width: 85%;
+  max-width: 360px;
+  padding: 26px;
+  border-radius: 26px;
+  box-shadow: 0 15px 40px rgba(0,0,0,.25);
+}
+
+.card h2 {
+  font-family: 'Pacifico';
+  color: #ff5f8a;
+}
+
+.card p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="p1">
+  <button onclick="go(2)">Bé nhấn vào đi :3</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="p2">
+  <h1>Có phải bé không?</h1>
+  <p>Bé nhớ nhập đúng thông tin nha 💗</p>
+  <input id="user" placeholder="Tên đăng nhập"><br>
+  <input id="pass" type="password" placeholder="Mật khẩu"><br><br>
+  <button onclick="login()">Bé nhấn vào đây ❤️</button>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="p3">
+  <h1>Uyên ơi!</h1>
+  <p>
+    16/03/2005<br><br>
+    Hôm nay là Noel phải không bé 🎄<br>
+    Một ngày dễ thương y như bé vậy đó 🥰
+  </p><br>
+  <button onclick="go(4)">Bé nhấn vào đây ❤️</button>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="p4">
+  <h1>Merry Christmas 🎄</h1>
+  <img src="https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif" width="260"><br><br>
+  <button onclick="go(5)">Anh còn muốn nói nè 💌</button>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="p5">
+  <h1>Em muốn gửi gì cho anh không? 💭</h1>
+  <input placeholder="Gõ gì cũng được nè 😝"><br><br>
+  <button onclick="go(6)">Gửi cho anh 💕</button>
+</div>
+
+<!-- PAGE 6 -->
+<div class="page" id="p6">
+  <h1>🤭</h1>
+  <p style="font-size:22px">
+    Anh dễ thương và cute hihi 😆💖
+  </p><br>
+  <button onclick="go(7)">Xem tiếp nè 👀</button>
+</div>
+
+<!-- PAGE 7 -->
+<div class="page" id="p7">
+  <h1>Love is in the air 💖</h1>
+  <img src="https://media.giphy.com/media/l2QDM9Jnim1YVILXa/giphy.gif" width="120">
+  <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" width="120">
+  <img src="https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif" width="120"><br><br>
+  <button onclick="go(8)">Xem album nè 📸</button>
+</div>
+
+<!-- PAGE 8 - ALBUM -->
+<div class="page" id="p8">
+  <h1>Em iu xinh album 💕</h1>
+  <p>Những khoảnh khắc anh yêu nhất</p>
+
+  <div class="album">
+    <img src="46ac194e-c874-4beb-ae31-6f124403ca6e.png" alt="img1">
+    <img src="c0c8cb62-f7db-464d-8dbf-d82997657721.png" alt="img2">
+    <img src="82f1aed1-015e-4953-886f-d21e6e8c3f52.png" alt="img3">
+    <img src="494baa41-49f3-44d9-b3a0-621e976ee8b2.png" alt="img4">
+    <img src="ccb65df5-5eea-46e6-b23d-da300ffaefa3.png" alt="img5">
+  </div>
+
+  <br>
+  <button onclick="go(9)">Mở thiệp Noel 🎄</button>
+</div>
+
+<!-- PAGE 9 - CARD -->
+<div class="page" id="p9">
+  <div class="card">
+    <h2>🎄 Merry Christmas 🎄</h2>
+    <p>
+      You are my Christmas miracle,<br>
+      and every day with you is a gift ✨<br><br>
+      With you, every moment sparkles ❤️
+    </p>
+    <hr>
+    <p style="font-size:16px">
+      Dù một năm đã qua đã nhiều chuyện xảy ra,<br>
+      nhưng hãy sống thật hạnh phúc có anh nhé 💞
+    </p>
+  </div>
+</div>
+
+<script>
+function go(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('p'+n).classList.add('active');
+}
+
+function login(){
+  const u = document.getElementById("user").value;
+  const p = document.getElementById("pass").value;
+  if(u==="uyen" && p==="16032005"){
+    go(3);
+  } else {
+    alert("Sai rồi bé ơi 😶");
+  }
+}
+
+/* snow */
+setInterval(()=>{
+  const s=document.createElement("div");
+  s.className="snow";
+  s.innerHTML="❄";
+  s.style.left=Math.random()*window.innerWidth+"px";
+  s.style.animationDuration=3+Math.random()*5+"s";
+  s.style.opacity=Math.random();
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),8000);
+},200);
+</script>
+
+</body>
+</html>
