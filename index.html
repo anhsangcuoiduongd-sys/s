@@ -2,72 +2,133 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Tặng Uyên 🎄</title>
+<title>Noel của Uyên 🎄</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f8cfd7;
-  overflow: hidden;
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f8cfd7;
+  overflow:hidden;
 }
-.page {
-  display: none;
-  height: 100vh;
-  text-align: center;
-  padding-top: 18vh;
+.page{
+  display:none;
+  height:100vh;
+  text-align:center;
+  padding-top:15vh;
 }
-.active { display: block; }
+.active{display:block}
+h1{font-family:'Pacifico';font-size:44px}
+p{font-size:18px}
 
-button {
-  padding: 14px 30px;
-  border-radius: 30px;
-  border: none;
-  background: #ff5f8a;
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
-  box-shadow: 0 8px 20px rgba(0,0,0,.2);
-}
-
-h1 {
-  font-family: 'Pacifico';
-  font-size: 46px;
+button{
+  padding:14px 30px;
+  border:none;
+  border-radius:30px;
+  background:#ff5f8a;
+  color:white;
+  font-size:18px;
+  cursor:pointer;
 }
 
-input {
-  padding: 12px;
-  width: 260px;
-  border-radius: 20px;
-  border: none;
-  margin: 10px;
-  text-align: center;
-}
-
-img {
-  width: 260px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.3);
-  margin: 10px;
+input{
+  padding:12px;
+  width:260px;
+  border-radius:20px;
+  border:none;
+  margin:8px;
+  text-align:center;
 }
 
 /* snow */
-.snow {
-  position: fixed;
-  top: -10px;
-  color: white;
-  font-size: 16px;
-  animation: fall linear infinite;
+.snow{
+  position:fixed;
+  top:-10px;
+  color:white;
+  animation:fall linear infinite;
 }
-@keyframes fall {
-  to { transform: translateY(110vh); }
+@keyframes fall{
+  to{transform:translateY(110vh)}
+}
+
+/* music */
+#musicBtn{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  font-size:26px;
+  cursor:pointer;
+}
+
+/* album flip */
+.album{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:20px;
+  margin-top:30px;
+}
+.flip{
+  width:140px;
+  height:180px;
+  perspective:1000px;
+}
+.flip-inner{
+  width:100%;
+  height:100%;
+  transition:transform .8s;
+  transform-style:preserve-3d;
+}
+.flip:hover .flip-inner{
+  transform:rotateY(180deg);
+}
+.flip-front,.flip-back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+.flip-front{
+  background:#ff8fb1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:38px;
+}
+.flip-back{
+  transform:rotateY(180deg);
+}
+.flip-back img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:18px;
+}
+
+/* card */
+.card{
+  background:white;
+  margin:auto;
+  width:85%;
+  max-width:360px;
+  padding:26px;
+  border-radius:26px;
+  box-shadow:0 15px 40px rgba(0,0,0,.25);
 }
 </style>
 </head>
 
 <body>
+
+<!-- MUSIC -->
+<audio id="bgm" loop>
+  <source src="noel.mp3" type="audio/mpeg">
+</audio>
+<div id="musicBtn" onclick="toggleMusic()">🎵</div>
 
 <!-- PAGE 1 -->
 <div class="page active" id="p1">
@@ -77,7 +138,6 @@ img {
 <!-- PAGE 2 -->
 <div class="page" id="p2">
   <h1>Có phải bé không?</h1>
-  <p>Bé nhớ nhập đúng thông tin để vào nha 💗</p>
   <input id="user" placeholder="Tên đăng nhập"><br>
   <input id="pass" type="password" placeholder="Mật khẩu"><br><br>
   <button onclick="login()">Bé nhấn vào đây ❤️</button>
@@ -88,56 +148,75 @@ img {
   <h1>Uyên ơi!</h1>
   <p>
     16/03/2005<br><br>
-    Hôm nay là Noel phải không bé 🎄<br>
-    Một ngày dễ thương y như bé vậy đó 🥰
-  </p><br>
-  <button onclick="go(4)">Bé nhấn vào đây ❤️</button>
+    Noel này anh làm riêng cho em 🎄
+  </p>
+  <br>
+  <button onclick="go(4)">Tiếp nè 💕</button>
 </div>
 
 <!-- PAGE 4 -->
 <div class="page" id="p4">
   <h1>Merry Christmas 🎄</h1>
-  <img src="https://media.giphy.com/media/3o6ZtpxSZbQRRnwCKQ/giphy.gif"><br><br>
-  <button onclick="go(5)">Anh còn muốn nói nè 💌</button>
+  <p>Em là điều dễ thương nhất mùa đông này</p>
+  <br>
+  <button onclick="go(5)">Xem album 📸</button>
 </div>
 
-<!-- PAGE 5 -->
+<!-- PAGE 5 : ALBUM (ĐỦ 5 ẢNH) -->
 <div class="page" id="p5">
-  <h1>Em muốn gửi gì cho anh không? 💭</h1>
-  <input placeholder="Gõ gì cũng được nè 😝"><br><br>
-  <button onclick="go(6)">Gửi cho anh 💕</button>
+  <h1>Album của em 💖</h1>
+
+  <div class="album">
+
+    <div class="flip"><div class="flip-inner">
+      <div class="flip-front">💗</div>
+      <div class="flip-back">
+        <img src="46ac194e-c874-4beb-ae31-6f124403ca6e.png" alt="1" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;300&quot; height=&quot;300&quot;><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;%23ff8fb1&quot;/><text x=&quot;50%&quot; y=&quot;50%&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot; font-size=&quot;20&quot; fill=&quot;white&quot;>Ảnh thiếu</text></svg>'">
+      </div>
+    </div></div>
+
+    <div class="flip"><div class="flip-inner">
+      <div class="flip-front">✨</div>
+      <div class="flip-back">
+        <img src="c0c8cb62-f7db-464d-8dbf-d82997657721.png" alt="2" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;300&quot; height=&quot;300&quot;><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;%23ff8fb1&quot;/><text x=&quot;50%&quot; y=&quot;50%&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot; font-size=&quot;20&quot; fill=&quot;white&quot;>Ảnh thiếu</text></svg>'">
+      </div>
+    </div></div>
+
+    <div class="flip"><div class="flip-inner">
+      <div class="flip-front">🎄</div>
+      <div class="flip-back">
+        <img src="82f1aed1-015e-4953-886f-d21e6e8c3f52.png" alt="3" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;300&quot; height=&quot;300&quot;><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;%23ff8fb1&quot;/><text x=&quot;50%&quot; y=&quot;50%&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot; font-size=&quot;20&quot; fill=&quot;white&quot;>Ảnh thiếu</text></svg>'">
+      </div>
+    </div></div>
+
+    <div class="flip"><div class="flip-inner">
+      <div class="flip-front">🌸</div>
+      <div class="flip-back">
+        <img src="494baa41-49f3-44d9-b3a0-621e976ee8b2.png" alt="4" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;300&quot; height=&quot;300&quot;><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;%23ff8fb1&quot;/><text x=&quot;50%&quot; y=&quot;50%&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot; font-size=&quot;20&quot; fill=&quot;white&quot;>Ảnh thiếu</text></svg>'">
+      </div>
+    </div></div>
+
+    <div class="flip"><div class="flip-inner">
+      <div class="flip-front">💞</div>
+      <div class="flip-back">
+        <img src="ccb65df5-5eea-46e6-b23d-da300ffaefa3.png" alt="5" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;300&quot; height=&quot;300&quot;><rect width=&quot;100%&quot; height=&quot;100%&quot; fill=&quot;%23ff8fb1&quot;/><text x=&quot;50%&quot; y=&quot;50%&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot; font-size=&quot;20&quot; fill=&quot;white&quot;>Ảnh thiếu</text></svg>'">
+      </div>
+    </div></div>
+
+  </div>
+
+  <br>
+  <button onclick="go(6)">Mở thiệp 🎁</button>
 </div>
 
 <!-- PAGE 6 -->
 <div class="page" id="p6">
-  <h1>🤭</h1>
-  <p style="font-size:22px">
-    Anh dễ thương và cute hihi 😆💖
-  </p><br>
-  <button onclick="go(7)">Xem tiếp nè 👀</button>
-</div>
-
-<!-- PAGE 7 -->
-<div class="page" id="p7">
-  <h1>Love is in the air 💖</h1>
-  <img src="https://media.giphy.com/media/l2QDM9Jnim1YVILXa/giphy.gif">
-  <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif">
-  <img src="https://media.giphy.com/media/3oriO6qJiXajN0TyDu/giphy.gif"><br>
-  <button onclick="go(8)">Lời chúc Noel 🎄</button>
-</div>
-
-<!-- PAGE 8 -->
-<div class="page" id="p8">
-  <h1>🎄 Merry Christmas 🎄</h1>
-  <p style="font-size:20px; line-height:1.6">
-    You are my Christmas miracle, and every day with you is a gift. ✨<br><br>
-
-    With you, every moment sparkles – Merry Christmas, my love. ❤️<br><br>
-
-    I’m so lucky to be spending another Christmas with you!
-  </p>
-  <div style="margin-top:18px">
-    <a href="uyen2.html"><button style="background:#fff;color:#ff5f8a;border-radius:20px;padding:10px 18px;border:2px solid #ff5f8a;cursor:pointer">Xem album & thiệp</button></a>
+  <div class="card">
+    <h1>🎄 Merry Christmas 🎄</h1>
+    <p>
+      Em là món quà đẹp nhất anh nhận được.<br>
+      Mong là mỗi mùa Noel sau vẫn có em 💖
+    </p>
   </div>
 </div>
 
@@ -148,23 +227,38 @@ function go(n){
 }
 
 function login(){
-  const u = document.getElementById("user").value;
-  const p = document.getElementById("pass").value;
+  const u=document.getElementById('user').value;
+  const p=document.getElementById('pass').value;
+  const bgm=document.getElementById('bgm');
   if(u==="uyen" && p==="16032005"){
     go(3);
-  } else {
+    try{ bgm.play(); }catch(e){console.warn('bgm play failed', e)}
+  }else{
     alert("Sai rồi bé ơi 😶");
   }
 }
 
-/* snow */
+function toggleMusic(){
+  const bgm=document.getElementById('bgm');
+  if(!bgm) return;
+  bgm.paused ? bgm.play() : bgm.pause();
+}
+
+// Hide music button if audio not found
+document.addEventListener('DOMContentLoaded', ()=>{
+  const bgm=document.getElementById('bgm');
+  bgm.addEventListener('error', ()=>{
+    console.warn('bgm not found');
+    document.getElementById('musicBtn').style.display='none';
+  });
+});
+
 setInterval(()=>{
   const s=document.createElement("div");
   s.className="snow";
   s.innerHTML="❄";
-  s.style.left=Math.random()*window.innerWidth+"px";
+  s.style.left=Math.random()*innerWidth+"px";
   s.style.animationDuration=3+Math.random()*5+"s";
-  s.style.opacity=Math.random();
   document.body.appendChild(s);
   setTimeout(()=>s.remove(),8000);
 },200);
